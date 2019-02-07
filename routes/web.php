@@ -12,7 +12,29 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //sending data to views
+    
+    $tasks = [
+        'go to the store',
+        'go to the market',
+        'go to the work'
+    ];
+    // to pass data into view as a second parameter
+    return view('welcome', [
+        'tasks' => $tasks,
+        'foo' => 'foobar',
+        'moo' => request('title')
+    ]);
+
+    //~second way
+    // return view('welcome')->withTasks($tasks)->withFoo(foo);
+
+    // third way
+    return view('welcome')->with([
+        'foo' => 'bar',
+        'tasks' => ['some task']
+
+    ])
 });
 
 Route::get('/products', function() {
